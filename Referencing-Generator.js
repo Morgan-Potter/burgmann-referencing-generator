@@ -114,7 +114,7 @@ function editReference() {
         submit.insertAdjacentHTML("beforebegin", '<input type="button" class="button" value="Submit" id="submit" onclick="storeBook(this.form, ' + ref_num + ');window.location.href = ' + "'" + '../' + "'" + '; return false;"/>')
     }
     if (ref_type == 'website') {
-        submit.insertAdjacentHTML("beforebegin", '<input type="button" class="button" value="Submit" id="submit" onclick="storeWebsite(this.form, ' + ref_num + ');window.location.href = ' + "'" + '../' + "'" + '; return false;"/>')
+        submit.insertAdjacentHTML("beforebegin", '<input type="button" class="button-alone" value="Submit" id="submit" onclick="storeWebsite(this.form, ' + ref_num + ');window.location.href = ' + "'" + '../' + "'" + '; return false;"/>')
     }
     submit.remove()
 
