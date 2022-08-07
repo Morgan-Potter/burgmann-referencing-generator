@@ -2,11 +2,11 @@
 window.onload = function () {
     localStorage.setItem("auth_num", "1");
     if (localStorage.getItem("edit") != undefined) {
-        if (document.location.pathname == "/generate_reference/" + localStorage.getItem("edit").split('_')[0] + ".html") {
+        if (document.location.pathname == "/burgmann-referencing-generator/generate_reference/" + localStorage.getItem("edit").split('_')[0] + ".html") {
             editReference()
         }
     }
-    if (document.location.pathname == "/") {
+    if (document.location.pathname == "/burgmann-referencing-generator/") {
         listReferences();
     }
 
@@ -108,13 +108,13 @@ function editReference() {
     let submit = document.getElementById("submit")
 
     if (ref_type == 'journal') {
-        submit.insertAdjacentHTML("beforebegin", '<input type="button" class="button" value="Submit" id="submit" onclick="storeJournal(this.form, ' + ref_num + ');window.location.pathname = ' + "'" + '../' + "'" + '; return false;"/>')
+        submit.insertAdjacentHTML("beforebegin", '<input type="button" class="button" value="Submit" id="submit" onclick="storeJournal(this.form, ' + ref_num + ');window.location.href = ' + "'" + '../' + "'" + '; return false;"/>')
     }
     if (ref_type == 'book') {
-        submit.insertAdjacentHTML("beforebegin", '<input type="button" class="button" value="Submit" id="submit" onclick="storeBook(this.form, ' + ref_num + ');window.location.pathname = ' + "'" + '../' + "'" + '; return false;"/>')
+        submit.insertAdjacentHTML("beforebegin", '<input type="button" class="button" value="Submit" id="submit" onclick="storeBook(this.form, ' + ref_num + ');window.location.href = ' + "'" + '../' + "'" + '; return false;"/>')
     }
     if (ref_type == 'website') {
-        submit.insertAdjacentHTML("beforebegin", '<input type="button" class="button" value="Submit" id="submit" onclick="storeWebsite(this.form, ' + ref_num + ');window.location.pathname = ' + "'" + '../' + "'" + '; return false;"/>')
+        submit.insertAdjacentHTML("beforebegin", '<input type="button" class="button" value="Submit" id="submit" onclick="storeWebsite(this.form, ' + ref_num + ');window.location.href = ' + "'" + '../' + "'" + '; return false;"/>')
     }
     submit.remove()
 
