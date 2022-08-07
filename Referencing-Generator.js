@@ -309,13 +309,13 @@ function listReferences() {
         }
         i += 1
         if (ref_type == "journal") {
-            article.innerHTML = "<h3>Reference " + i + " (Journal)</h3> <p>" + auth_list + " (" + ref_data.year + "). " + ref_data.title + ". <em>" + ref_data.journal_title + ', ' + ref_data.volume + "</em>" + " (" + ref_data.issue + "), " + ref_data.pages + ". " + ref_data.doi + "</p><div type='button' class='edit' onclick='document.location.pathname = " + '"./generate_reference/journal.html";' + "localStorage.setItem(" + '"edit", "' + references[i - 1][0] + '"' + "); return false;'><i class='ti ti-edit'></i></div>";
+            article.innerHTML = "<h3>Reference " + i + " (Journal)</h3> <p>" + auth_list + " (" + ref_data.year + "). " + ref_data.title + ". <em>" + ref_data.journal_title + ', ' + ref_data.volume + "</em>" + " (" + ref_data.issue + "), " + ref_data.pages + ". " + ref_data.doi + "</p><div type='button' class='edit' onclick='document.location.href = " + '"./generate_reference/journal.html";' + "localStorage.setItem(" + '"edit", "' + references[i - 1][0] + '"' + "); return false;'><i class='ti ti-edit'></i></div>";
         }
         if (ref_type == "book") {
-            article.innerHTML = "<h3>Reference " + i + " (Book)</h3> <p>" + auth_list + " (" + ref_data.year + "). <em>" + ref_data.title + ". </em>" + ref_data.publisher + '. ' + ref_data.url + "<div type='button' class='edit' onclick='document.location.pathname = " + '"./generate_reference/book.html";' + "localStorage.setItem(" + '"edit", "' + references[i - 1][0] + '"' + "); return false;'><i class='ti ti-edit'></i></div>"
+            article.innerHTML = "<h3>Reference " + i + " (Book)</h3> <p>" + auth_list + " (" + ref_data.year + "). <em>" + ref_data.title + ". </em>" + ref_data.publisher + '. ' + ref_data.url + "<div type='button' class='edit' onclick='document.location.href = " + '"generate_reference/book.html";' + "localStorage.setItem(" + '"edit", "' + references[i - 1][0] + '"' + "); return false;'><i class='ti ti-edit'></i></div>"
         }
         if (ref_type == "website") {
-            article.innerHTML = "<h3>Reference " + i + " (Website)</h3> <p>" + auth_list + " (" + ref_data.year + "). <em>" + ref_data.title + '. </em>' + ref_data.url + '.' + "<div type='button' class='edit' onclick='document.location.pathname = " + '"./generate_reference/website.html";' + "localStorage.setItem(" + '"edit", "' + references[i - 1][0] + '"' + "); return false;'><i class='ti ti-edit'></i></div>"
+            article.innerHTML = "<h3>Reference " + i + " (Website)</h3> <p>" + auth_list + " (" + ref_data.year + "). <em>" + ref_data.title + '. </em>' + ref_data.url + '.' + "<div type='button' class='edit' onclick='document.location.href = " + '"generate_reference/website.html";' + "localStorage.setItem(" + '"edit", "' + references[i - 1][0] + '"' + "); return false;'><i class='ti ti-edit'></i></div>"
         }
         i -= 1
         document.getElementById("reference-list").appendChild(article);
