@@ -2,11 +2,11 @@
 window.onload = function () {
     localStorage.setItem("auth_num", "1");
     if (localStorage.getItem("edit") != undefined) {
-        if (document.location.pathname == "/burgmann-referencing-generator/generate_reference/" + localStorage.getItem("edit").split('_')[0] + ".html") {
+        if (document.location.pathname == "/generate_reference/" + localStorage.getItem("edit").split('_')[0] + ".html") {
             editReference()
         }
     }
-    if (document.location.pathname == "/burgmann-referencing-generator/") {
+    if (document.location.pathname == "/") {
         listReferences();
     }
 
