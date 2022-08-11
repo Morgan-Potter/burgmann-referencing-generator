@@ -120,54 +120,13 @@ function editReference() {
 
 }
 
-function doubleSpace(reference) {
-    // Returns the reference json form with double spaced lines
-    for (let i=0; i < Object.keys(reference).length; i++) {
-        var key = Object.keys(reference)[i];
-        var item = reference[key];
-        if (key.split('_')[0] == 'auth') { // Wrote the code for authors and then realized they are only one word. Keeping it here for the in case someone adds a middle name or something.
-            for (let iter = 1; iter < Object.keys(item).length; iter++) {
-                var words = item[iter.toString()].split(' ')
-                for (let word = 0; word < words.length; word++) {
-                    if (word == 0) {
-                        dspaced += words[word]
-                    }
-                    else {
-                        dspaced += '  ' + words[word]
-                    }
-                }
-                if (dspaced) {
-                reference[key][iter.toString()] = dspaced
-                }
-            }
-        }
-        else {
-            var words = item.split(' ')
-            var dspaced = ''
-            for (let word = 0; word < words.length; word++) {
-                if (word == 0) {
-                    dspaced += words[word]
-                }
-                else {
-                    dspaced += '  ' + words[word]
-                }
-            }
-            if (dspaced) {
-            reference[key] = dspaced
-            }
-        }
-        
-    }
-    return reference
-}
-
 function generateDocx() {
     references = sortReferences();
     let ref_list = []
 
     for (let i = 0; i <= references.length - 1; i++) {
         let ref_type = references[i][0].split('_')[0];
-        let ref_data = doubleSpace(references[i][1])
+        let ref_data = references[i][1]
         let auth_list = '';
         if (ref_data.corporate) {
             auth_list += ref_data.corporate
@@ -175,9 +134,9 @@ function generateDocx() {
         else {
             if (Object.keys(ref_data.auth_last).length > 0) {
 
-                auth_list += ref_data.auth_last["1"] + ",  " + ref_data.auth_first["1"].split('')[0] + '.'
+                auth_list += ref_data.auth_last["1"] + ", " + ref_data.auth_first["1"].split('')[0] + '.'
                 for (let auth = Object.keys(ref_data.auth_last).length; auth > 1; auth--) {
-                    auth_list += '  &  ' + ref_data.auth_last[auth.toString()] + ",  " + ref_data.auth_first[auth.toString()].split('')[0] + '.'
+                    auth_list += ' & ' + ref_data.auth_last[auth.toString()] + ", " + ref_data.auth_first[auth.toString()].split('')[0] + '.'
                 }
             }
         }
@@ -185,6 +144,9 @@ function generateDocx() {
         if (ref_type == "journal") {
             let ref = new docx.Paragraph({
                 font: "Calibri (Body)",
+                spacing: {
+                    line: 480,
+                },
                 indent: {
                     left: 720,
                     hanging: 720
@@ -192,17 +154,17 @@ function generateDocx() {
 
                 children: [
                     new docx.TextRun({
-                        text: auth_list + "  (" + ref_data.year + ").  " + ref_data.title + ".  ",
+                        text: auth_list + " (" + ref_data.year + "). " + ref_data.title + ". ",
                         font: "Calibri (Body)"
                     }),
                     new docx.TextRun({
                         font: "Calibri (Body)",
-                        text: ref_data.journal_title + ',  ' + ref_data.volume,
+                        text: ref_data.journal_title + ', ' + ref_data.volume,
                         italics: true,
                     }),
                     new docx.TextRun({
                         font: "Calibri (Body)",
-                        text: "  (" + ref_data.issue + "),  " + ref_data.pages + ".  " + ref_data.doi
+                        text: " (" + ref_data.issue + "), " + ref_data.pages + ". " + ref_data.doi
                     })
                 ]
             });
@@ -211,6 +173,9 @@ function generateDocx() {
         if (ref_type == "book") {
             let ref = new docx.Paragraph({
                 font: "Calibri (Body)",
+                spacing: {
+                    line: 480,
+                },
                 indent: {
                     left: 720,
                     hanging: 720
@@ -218,17 +183,17 @@ function generateDocx() {
 
                 children: [
                     new docx.TextRun({
-                        text: auth_list + "  (" + ref_data.year + ").  ",
+                        text: auth_list + " (" + ref_data.year + "). ",
                         font: "Calibri (Body)"
                     }),
                     new docx.TextRun({
                         font: "Calibri (Body)",
-                        text: ref_data.title + ".  ",
+                        text: ref_data.title + ". ",
                         italics: true,
                     }),
                     new docx.TextRun({
                         font: "Calibri (Body)",
-                        text: ref_data.publisher + '.  ' + ref_data.url
+                        text: ref_data.publisher + '. ' + ref_data.url
                     })
                 ]
             });
@@ -237,6 +202,9 @@ function generateDocx() {
         if (ref_type == "website") {
             let ref = new docx.Paragraph({
                 font: "Calibri (Body)",
+                spacing: {
+                    line: 480,
+                },
                 indent: {
                     left: 720,
                     hanging: 720
@@ -244,12 +212,12 @@ function generateDocx() {
 
                 children: [
                     new docx.TextRun({
-                        text: auth_list + "  (" + ref_data.year + ").  ",
+                        text: auth_list + " (" + ref_data.year + "). ",
                         font: "Calibri (Body)"
                     }),
                     new docx.TextRun({
                         font: "Calibri (Body)",
-                        text: ref_data.title + '.  ',
+                        text: ref_data.title + '. ',
                         italics: true,
                     }),
                     new docx.TextRun({
