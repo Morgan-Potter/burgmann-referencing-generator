@@ -57,11 +57,10 @@ header {
 }
 .header-content {
     width: 800px;
-    height: 50px;
+    height: 49px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
 }
     
 header > .header-content > .header-button {
