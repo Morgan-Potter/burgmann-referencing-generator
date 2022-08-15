@@ -27,6 +27,7 @@ header {
 .logo > img {
     height: 49px;
     margin: 0;
+    padding-right: 10px;
 }
 
 .logo {
