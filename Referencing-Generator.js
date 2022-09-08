@@ -15,20 +15,20 @@ window.onload = function () {
 function sortReferences() {
 
     // Create array of references
-    references = []
-    journal_num = parseInt(localStorage.getItem("journal_num"));
+    var references = []
+    var journal_num = parseInt(localStorage.getItem("journal_num"));
     for (journal_num > 1; journal_num--;) {
         journal_num += 1
         references.push(["journal_" + journal_num.toString(), JSON.parse(localStorage.getItem("journal_" + journal_num.toString()))])
         journal_num -= 1
     }
-    book_num = parseInt(localStorage.getItem("book_num"));
+    var book_num = parseInt(localStorage.getItem("book_num"));
     for (book_num > 1; book_num--;) {
         book_num += 1
         references.push(["book_" + book_num.toString(), JSON.parse(localStorage.getItem("book_" + book_num.toString()))])
         book_num -= 1
     }
-    website_num = parseInt(localStorage.getItem("website_num"));
+    var website_num = parseInt(localStorage.getItem("website_num"));
     for (website_num > 1; website_num--;) {
         website_num += 1
         references.push(["website_" + website_num.toString(), JSON.parse(localStorage.getItem("website_" + website_num.toString()))])
@@ -48,12 +48,12 @@ function sortReferences() {
                 b[1].auth_first["1"] = b[1].corporate // 
             }
             if (Object.keys(a[1].auth_last).length == 0) {
-                a[1].auth_first["1"] = title
-                a[1].auth_last["1"] = title
+                a[1].auth_first["1"] = a[1].title
+                a[1].auth_last["1"] = a[1].title
             }   
             if (Object.keys(b[1].auth_last).length == 0) {
-                b[1].auth_first["1"] = title
-                b[1].auth_last["1"] = title
+                b[1].auth_first["1"] = b[1].title
+                b[1].auth_last["1"] = b[1].title
             }
 
                 if (a[1].auth_last["1"].split('')[0] != b[1].auth_last["1"].split('')[0]) {
@@ -129,7 +129,7 @@ function generateDocx() {
         let ref_data = references[i][1]
         let auth_list = '';
         if (ref_data.corporate) {
-            auth_list += ref_data.corporate
+            auth_list += ref_data.corporate + '.'
         }
         else {
             if (Object.keys(ref_data.auth_last).length > 0) {
@@ -264,7 +264,7 @@ function listReferences() {
         let article = document.createElement("article");
         let auth_list = '';
         if (ref_data.corporate) {
-            auth_list += ref_data.corporate
+            auth_list += ref_data.corporate + '.'
         }
         else {
             if (Object.keys(ref_data.auth_last).length > 0) {
