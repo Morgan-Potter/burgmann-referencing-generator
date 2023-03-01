@@ -138,8 +138,10 @@ section {
     text-decoration: none;
 }
 .reference-type > i{
-    font-size: 200px;
+    font-size: 190px;
     color: rgb(115, 131, 236);
+    padding-top: 20px;
+    padding-bottom: 5px;
 }
 
 .index-container {

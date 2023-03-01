@@ -40,7 +40,7 @@
         
         <section id=reference-list class="references">
             <h1>References</h1> 
-        <input type="button" value="Delete References" onclick="localStorage.clear(); location.reload(); return false;">     
+        <input type="button" value="Delete References" onclick="if (confirm('This will delete all your references forever. Are you sure you want to do this?')) { localStorage.clear(); location.reload(); } return false;">     
         </section>
 
     </body>

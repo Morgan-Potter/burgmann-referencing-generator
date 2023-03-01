@@ -50,25 +50,25 @@ function sortReferences() {
             if (Object.keys(a[1].auth_last).length == 0) {
                 a[1].auth_first["1"] = a[1].title
                 a[1].auth_last["1"] = a[1].title
-            }   
+            }
             if (Object.keys(b[1].auth_last).length == 0) {
                 b[1].auth_first["1"] = b[1].title
                 b[1].auth_last["1"] = b[1].title
             }
 
-                if (a[1].auth_last["1"].split('')[0] != b[1].auth_last["1"].split('')[0]) {
-                    return a[1].auth_last["1"].toUpperCase().charCodeAt(0) - b[1].auth_last["1"].toUpperCase().charCodeAt(0) // ascending order
+            if (a[1].auth_last["1"].split('')[0] != b[1].auth_last["1"].split('')[0]) {
+                return a[1].auth_last["1"].toUpperCase().charCodeAt(0) - b[1].auth_last["1"].toUpperCase().charCodeAt(0) // ascending order
+            }
+            else {
+                if (a[1].auth_first["1"].split('')[0] != b[1].auth_first["1"].split('')[0]) {
+                    return a[1].auth_first["1"].toUpperCase().charCodeAt(0) - b[1].auth_last["1"].toUpperCase().charCodeAt(0)
                 }
                 else {
-                    if (a[1].auth_first["1"].split('')[0] != b[1].auth_first["1"].split('')[0]) {
-                        return a[1].auth_first["1"].toUpperCase().charCodeAt(0) - b[1].auth_last["1"].toUpperCase().charCodeAt(0)
-                    }
-                    else {
-                        return b[1].year - a[1].year // descending order
-                    }
-
-                    // What if it is the same auth and same year? (year numbering feature not included)
+                    return b[1].year - a[1].year // descending order
                 }
+
+                // What if it is the same auth and same year? (year numbering feature not included)
+            }
         })
     return references
 }
@@ -277,13 +277,13 @@ function listReferences() {
         }
         i += 1
         if (ref_type == "journal") {
-            article.innerHTML = "<h3>Reference " + i + " (Journal)</h3> <p>" + auth_list + " (" + ref_data.year + "). " + ref_data.title + ". <em>" + ref_data.journal_title + ', ' + ref_data.volume + "</em>" + " (" + ref_data.issue + "), " + ref_data.pages + ". " + ref_data.doi + "</p><div type='button' class='edit' onclick='document.location.href = " + '"./generate_reference/journal.html";' + "localStorage.setItem(" + '"edit", "' + references[i - 1][0] + '"' + "); return false;'><i class='ti ti-edit'></i></div>";
+            article.innerHTML = "<h3>Reference " + i + " (Journal)</h3> <p>" + auth_list + " (" + ref_data.year + "). " + ref_data.title + ". <em>" + ref_data.journal_title + ', ' + ref_data.volume + "</em>" + " (" + ref_data.issue + "), " + ref_data.pages + ". " + ref_data.doi + "</p><div type='button' class='edit' onclick='document.location.href = " + '"./generate_reference/journal.html";' + "localStorage.setItem(" + '"edit", "' + references[i - 1][0] + '"' + "); return false;'><i class='fa-solid fa-pen-to-square'></i>";
         }
         if (ref_type == "book") {
-            article.innerHTML = "<h3>Reference " + i + " (Book)</h3> <p>" + auth_list + " (" + ref_data.year + "). <em>" + ref_data.title + ". </em>" + ref_data.publisher + '. ' + ref_data.url + "<div type='button' class='edit' onclick='document.location.href = " + '"generate_reference/book.html";' + "localStorage.setItem(" + '"edit", "' + references[i - 1][0] + '"' + "); return false;'><i class='ti ti-edit'></i></div>"
+            article.innerHTML = "<h3>Reference " + i + " (Book)</h3> <p>" + auth_list + " (" + ref_data.year + "). <em>" + ref_data.title + ". </em>" + ref_data.publisher + '. ' + ref_data.url + "<div type='button' class='edit' onclick='document.location.href = " + '"generate_reference/book.html";' + "localStorage.setItem(" + '"edit", "' + references[i - 1][0] + '"' + "); return false;'><i class='fa-solid fa-pen-to-square'></i>"
         }
         if (ref_type == "website") {
-            article.innerHTML = "<h3>Reference " + i + " (Website)</h3> <p>" + auth_list + " (" + ref_data.year + "). <em>" + ref_data.title + '. </em>' + ref_data.url + '.' + "<div type='button' class='edit' onclick='document.location.href = " + '"generate_reference/website.html";' + "localStorage.setItem(" + '"edit", "' + references[i - 1][0] + '"' + "); return false;'><i class='ti ti-edit'></i></div>"
+            article.innerHTML = "<h3>Reference " + i + " (Website)</h3> <p>" + auth_list + " (" + ref_data.year + "). <em>" + ref_data.title + '. </em>' + ref_data.url + '.' + "<div type='button' class='edit' onclick='document.location.href = " + '"generate_reference/website.html";' + "localStorage.setItem(" + '"edit", "' + references[i - 1][0] + '"' + "); return false;'><i class='fa-solid fa-pen-to-square'></i>"
         }
         i -= 1
         document.getElementById("reference-list").appendChild(article);
@@ -470,12 +470,14 @@ function addAuthor() {
 }
 
 function removeAuthor() {
-    let current_auth = localStorage.getItem("auth_num")
-    let first = document.getElementById(current_auth + ":auth_first")
-    let last = document.getElementById(current_auth + ":auth_last")
-    let br = document.getElementById(current_auth + ":br")
-    first.remove()
-    last.remove()
-    br.remove()
-    localStorage.setItem("auth_num", (parseInt(current_auth) - 1).toString())
+    if (parseInt(localStorage.getItem("auth_num")) > 1) {
+        let current_auth = localStorage.getItem("auth_num")
+        let first = document.getElementById(current_auth + ":auth_first")
+        let last = document.getElementById(current_auth + ":auth_last")
+        let br = document.getElementById(current_auth + ":br")
+        first.remove()
+        last.remove()
+        br.remove()
+        localStorage.setItem("auth_num", (parseInt(current_auth) - 1).toString())
+    }
 }

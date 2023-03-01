@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T51CWYXXZ8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-T51CWYXXZ8');
-</script>
-        <link rel="shortcut icon" href="assets/burgmann-logo.svg">
-        <link rel="stylesheet" href="Referencing_Generator.css">
-        <title>Burgmann APA Referencing Generator</title>
-        <script src="https://unpkg.com/docx@7.4.1/build/index.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
-        <script type="text/javascript" src="Referencing-Generator.js"></script>
-        <link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T51CWYXXZ8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    </head>
-    <body>
-        <header>
-            <div class="header-content">
+        gtag('config', 'G-T51CWYXXZ8');
+    </script>
+    <link rel="shortcut icon" href="assets/burgmann-logo.svg">
+    <link rel="stylesheet" href="Referencing_Generator.css">
+    <title>Burgmann APA Referencing Generator</title>
+    <script src="https://unpkg.com/docx@7.4.1/build/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
+    <script type="text/javascript" src="Referencing-Generator.js"></script>
+    <script src="https://kit.fontawesome.com/0412476025.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
             <div class="logo">
-            <img src="/assets/burgmann-logo.svg">Burgmann APA Referencing Generator
+                <img src="/assets/burgmann-logo.svg">Burgmann APA Referencing Generator
             </div>
-            <!-- <div class="name"><a href='https://morgan-potter.github.io'> <span class="logo">Morgan Potter</span> </a> </div> -->
-                <a class="header-button" href='./'><span> Home </span></a>
-                <a class="header-button" href='./New_Reference.html'> <span> Reference </span> </a>
-                <button class="header-button" onclick="generateDocx(); return false;"> Generate Word Document </button>
-            </div>
-        </header>
-        
-        <section id=reference-list class="references">
-            <h1>References</h1> 
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfESj2CFHXRtCszOLqHSGp3dHQ7HGwlx2qCU8QzrFinVb3DUg/viewform?usp=sf_link" style="display: block; margin-left: 575px; color: #424242;">Report a Bug / Feature Request</a>
-        </section>
-        <input type="button" class="delete" value="Delete All References" onclick="localStorage.clear(); location.reload(); return false;">
-              
-    </body>
+            <a class="header-button" href='./'><span> Home </span></a>
+            <a class="header-button" href='./New_Reference.html'> <span> Reference </span> </a>
+            <button class="header-button" onclick="generateDocx(); return false;"> Generate Word Document </button>
+        </div>
+    </header>
+
+    <section id=reference-list class="references">
+        <h1>References</h1>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfESj2CFHXRtCszOLqHSGp3dHQ7HGwlx2qCU8QzrFinVb3DUg/viewform?usp=sf_link"
+            style="display: block; margin-left: 575px; color: #424242;">Report a Bug / Feature Request</a>
+    </section>
+    <input type="button" class="delete" value="Delete All References"
+        onclick="if (confirm('This will delete all your references forever. Are you sure you want to do this?')) { localStorage.clear(); location.reload(); } return false;">
+
+</body>
+
 </html>
